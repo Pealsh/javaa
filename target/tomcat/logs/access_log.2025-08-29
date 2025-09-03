@@ -1,0 +1,12 @@
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:31:56 +0900] "GET /jdynamic2 HTTP/1.1" 302 - http-bio-8081-exec-1 0
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:31:56 +0900] "GET /jdynamic2/ HTTP/1.1" 200 1698 http-bio-8081-exec-2 246
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:31:56 +0900] "GET /jdynamic2/style.css HTTP/1.1" 200 15416 http-bio-8081-exec-3 2
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:31:57 +0900] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8081-exec-4 0
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:32:09 +0900] "POST /jdynamic2/reservation HTTP/1.1" 302 - http-bio-8081-exec-5 12
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:32:09 +0900] "GET /jdynamic2/reservation?action=list HTTP/1.1" 200 3651 http-bio-8081-exec-6 88
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:32:13 +0900] "GET /jdynamic2/index.jsp HTTP/1.1" 200 1698 http-bio-8081-exec-7 3
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:32:21 +0900] "POST /jdynamic2/reservation HTTP/1.1" 200 1763 http-bio-8081-exec-8 4
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:32:22 +0900] "POST /jdynamic2/reservation HTTP/1.1" 200 1763 http-bio-8081-exec-9 2
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:32:24 +0900] "GET /jdynamic2/reservation?action=list HTTP/1.1" 200 3651 http-bio-8081-exec-10 1
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:35:14 +0900] "POST /jdynamic2/reservation HTTP/1.1" 302 - http-bio-8081-exec-2 13
+0:0:0:0:0:0:0:1 - - [29/Aug/2025:14:35:14 +0900] "GET /jdynamic2/reservation?action=list HTTP/1.1" 200 2880 http-bio-8081-exec-2 3
