@@ -116,7 +116,7 @@ value="${param.reservation_time}"/>" required>
         <p class="success-message"><c:out value="${successMessage}"/></p> 
  
         <div class="button-group"> 
-            <a href="reservation?action=list" class="button secondary">予約一覧を確認</a> 
+            <a href="login" class="button secondary">予約一覧を確認</a> 
         </div> 
     </div> 
 

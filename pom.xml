@@ -54,7 +54,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <port>8081</port>
+                    <port>8080</port>
                     <path>/jdynamic2</path>
                     <!-- srcディレクトリを直接使用 -->
                     <warSourceDirectory>${project.basedir}/src/main/webapp</warSourceDirectory>

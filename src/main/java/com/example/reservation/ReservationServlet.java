@@ -30,6 +30,12 @@ public class ReservationServlet extends HttpServlet {
         String action = req.getParameter("action"); 
  
         if ("list".equals(action) || action == null) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             String searchTerm = req.getParameter("search"); 
             String sortBy = req.getParameter("sortBy"); 
             String sortOrder = req.getParameter("sortOrder"); 
@@ -81,18 +87,42 @@ sortOrder);
             RequestDispatcher rd = req.getRequestDispatcher("/jsp/list.jsp"); 
             rd.forward(req, resp); 
         } else if ("edit".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int id = Integer.parseInt(req.getParameter("id")); 
             Reservation reservation = reservationDAO.getReservationById(id); 
             req.setAttribute("reservation", reservation); 
             RequestDispatcher rd = req.getRequestDispatcher("/jsp/edit.jsp"); 
             rd.forward(req, resp); 
         } else if ("export_csv".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             exportCsv(req, resp); 
         } else if ("clean_up".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int deletedCount = reservationDAO.getAllReservations().size();
             reservationDAO.cleanUpPastReservations(); 
             resp.sendRedirect("reservation?action=list&message=" + deletedCount + "件の予約を削除しました"); 
         } else if ("confirm".equals(action)) {
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int id = Integer.parseInt(req.getParameter("id"));
             if (reservationDAO.updateReservationStatus(id, Reservation.ReservationStatus.CONFIRMED)) {
                 resp.sendRedirect("reservation?action=list&message=予約を確定しました");
@@ -100,6 +130,12 @@ sortOrder);
                 resp.sendRedirect("reservation?action=list&message=予約確定に失敗しました");
             }
         } else if ("cancel".equals(action)) {
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int id = Integer.parseInt(req.getParameter("id"));
             if (reservationDAO.updateReservationStatus(id, Reservation.ReservationStatus.CANCELLED)) {
                 resp.sendRedirect("reservation?action=list&message=予約をキャンセルしました");
@@ -107,6 +143,12 @@ sortOrder);
                 resp.sendRedirect("reservation?action=list&message=予約キャンセルに失敗しました");
             }
         } else if ("complete".equals(action)) {
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int id = Integer.parseInt(req.getParameter("id"));
             if (reservationDAO.updateReservationStatus(id, Reservation.ReservationStatus.COMPLETED)) {
                 resp.sendRedirect("reservation?action=list&message=診療を完了しました");
@@ -258,6 +300,12 @@ sortOrder);
                 rd.forward(req, resp); 
             } 
         } else if ("update".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int id = Integer.parseInt(req.getParameter("id")); 
             
             // 医療クリニック予約用の全パラメータを取得
@@ -370,6 +418,12 @@ sortOrder);
                 rd.forward(req, resp); 
             } 
         } else if ("delete".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
             int id = Integer.parseInt(req.getParameter("id")); 
             reservationDAO.deleteReservation(id); 
             resp.sendRedirect("reservation?action=list"); 
@@ -432,6 +486,16 @@ e.getMessage());
                     record.getStatus() != null ? record.getStatus().getDisplayName() : "予約申込中")); 
         } 
         writer.flush(); 
+    }
+    
+    // 管理者ログインチェックメソッド
+    private boolean isAdminLoggedIn(HttpServletRequest request) {
+        javax.servlet.http.HttpSession session = request.getSession(false);
+        if (session != null) {
+            Boolean isAdmin = (Boolean) session.getAttribute("isAdmin");
+            return isAdmin != null && isAdmin;
+        }
+        return false;
     }
     
 } 

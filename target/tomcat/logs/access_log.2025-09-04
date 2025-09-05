@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [04/Sep/2025:17:44:28 +0900] "GET /jdynamic2/reservation?action=list HTTP/1.1" 200 7596 http-bio-8080-exec-5 96
+0:0:0:0:0:0:0:1 - - [04/Sep/2025:17:44:28 +0900] "GET /jdynamic2/style.css HTTP/1.1" 304 - http-bio-8080-exec-5 3
+0:0:0:0:0:0:0:1 - - [04/Sep/2025:17:44:28 +0900] "GET /jdynamic2/js/modern-ui.js HTTP/1.1" 304 - http-bio-8080-exec-9 2
+0:0:0:0:0:0:0:1 - - [04/Sep/2025:17:44:42 +0900] "GET /jdynamic2/index.jsp HTTP/1.1" 200 14011 http-bio-8080-exec-10 2

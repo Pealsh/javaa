@@ -1,5 +1,4 @@
-// Modern UI JavaScript for Enhanced User Experience
-// Inspired by global modern web applications
+
 
 document.addEventListener('DOMContentLoaded', function() {
     
@@ -391,14 +390,6 @@ document.addEventListener('DOMContentLoaded', function() {
         setupPageTransitions();
         setupKeyboardNavigation();
         convertErrorMessagesToToasts();
-        
-        // Show welcome toast on first load
-        if (!sessionStorage.getItem('welcomeShown')) {
-            setTimeout(() => {
-                showToast('予約システムへようこそ！', 'info');
-                sessionStorage.setItem('welcomeShown', 'true');
-            }, 1000);
-        }
         
         console.log('Modern UI initialized successfully! 🚀');
     }
