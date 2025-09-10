@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,9 +20,9 @@
             
             <div class="form-section">
                 <h3 style="text-align: center;">認証</h3>
-                <p style="text-align: center;">
-                    <label for="password" style="display: block; text-align: center; margin-bottom: var(--space-3);">パスワード *</label>
-                    <input type="password" id="password" name="password" required placeholder="パスワードを入力してください" style="width: 100%; max-width: 400px; margin: 0 auto; display: block;">
+                <p>
+                    <label for="password">パスワード *</label>
+                    <input type="password" id="password" name="password" required placeholder="パスワードを入力してください">
                 </p>
             </div>
             
