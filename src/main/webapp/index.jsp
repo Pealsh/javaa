@@ -19,6 +19,12 @@
             <input type="hidden" name="action" value="add"> 
             <p class="error-message"><c:out value="${errorMessage}"/></p>
             
+            <c:if test="${param.message == 'success'}">
+                <div class="success-message" style="display: block; background-color: var(--success-light); border: 1px solid var(--success-color); color: var(--success-color); padding: var(--space-4); border-radius: var(--radius); margin-bottom: var(--space-4); text-align: center; font-weight: 600;">
+                    予約ありがとうございます！
+                </div>
+            </c:if>
+            
             <div class="form-section">
                 <h3>患者様情報</h3>
                 <p> 

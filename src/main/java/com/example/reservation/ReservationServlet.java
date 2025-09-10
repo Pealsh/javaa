@@ -305,8 +305,8 @@ sortOrder);
                     rd.forward(req, resp); 
                     return; 
                 } 
-                // 成功時はトップページにリダイレクト
-                resp.sendRedirect(req.getContextPath() + "/"); 
+                // 成功時はトップページに成功メッセージ付きでリダイレクト
+                resp.sendRedirect(req.getContextPath() + "/?message=success"); 
             } catch (DateTimeParseException e) { 
                 req.setAttribute("errorMessage", "有効な日時を入力してください。"); 
                 RequestDispatcher rd = req.getRequestDispatcher("/index.jsp"); 

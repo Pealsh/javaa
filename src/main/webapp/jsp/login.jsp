@@ -24,6 +24,9 @@
                     <label for="password">パスワード *</label>
                     <input type="password" id="password" name="password" required placeholder="パスワードを入力してください">
                 </p>
+                <div style="text-align: center; margin-top: var(--space-3); color: var(--gray-600); font-size: 14px;">
+                    <strong>DEMO用パスワード:</strong> 12341234lol
+                </div>
             </div>
             
             <div class="button-group">

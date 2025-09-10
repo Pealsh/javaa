@@ -152,6 +152,7 @@
                             <c:if test="${reservation.status == 'PENDING'}">
                                 <a href="reservation?action=confirm&id=${reservation.id}" class="table-button table-button-success" 
                                    onclick="return confirm('予約を確定しますか？\n患者: ${reservation.name}');" title="予約を確定する">予約確定</a>
+                                
                             </c:if>
                             
                             <c:if test="${reservation.status == 'CONFIRMED'}">
@@ -168,7 +169,7 @@
                                 <form action="reservation" method="post" style="display:inline;"> 
                                     <input type="hidden" name="action" value="delete"> 
                                     <input type="hidden" name="id" value="${reservation.id}"> 
-                                    <input type="submit" value="削除" class="table-button table-button-secondary" onclick="return 
+                                    <input type="submit" value="削除" class="table-button table-button-danger" onclick="return 
 confirm('本当に予約データを削除しますか？\n患者: ${reservation.name}\n日時: ${reservation.reservationTime}');" title="予約データを削除する"> 
                                 </form>
                             </c:if>
