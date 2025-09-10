@@ -53,7 +53,8 @@
             </form> 
         </div> 
  
-        <table> 
+        <div class="table-container">
+            <table> 
             <thead> 
                 <tr> 
                     <th>患者ID</th> 
@@ -108,8 +109,8 @@
                                 <c:when test="${not empty reservation.symptoms}">
                                     <div class="symptoms-preview" title="${reservation.symptoms}">
                                         <c:choose>
-                                            <c:when test="${reservation.symptoms.length() > 20}">
-                                                ${reservation.symptoms.substring(0, 20)}...
+                                            <c:when test="${reservation.symptoms.length() > 10}">
+                                                ${reservation.symptoms.substring(0, 10)}...
                                             </c:when>
                                             <c:otherwise>
                                                 ${reservation.symptoms}
@@ -145,6 +146,7 @@
                             </c:choose>
                         </td>
                         <td class="table-actions"> 
+                            <a href="reservation?action=view&id=${reservation.id}" class="table-button table-button-info" title="診療予約詳細を表示">詳細</a>
                             <a href="reservation?action=edit&id=${reservation.id}" class="table-button" title="診療予約情報を編集">編集</a>
                             
                             <c:if test="${reservation.status == 'PENDING'}">
@@ -177,7 +179,8 @@ confirm('本当に予約データを削除しますか？\n患者: ${reservation
                     <tr><td colspan="9" class="no-data">現在、診療予約がありません。</td></tr> 
                 </c:if> 
             </tbody> 
-        </table> 
+            </table>
+        </div> 
  
         <div class="pagination"> 
             <c:if test="${currentPage != 1}"> 

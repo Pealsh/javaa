@@ -136,7 +136,7 @@ value="${param.reservation_time}"/>" required>
 
         // 予約フォームの検証とエラーハンドリング
         document.addEventListener('DOMContentLoaded', function() {
-            // ページロード時にボタン状態をリセット
+            // ページロード時にボタン状態をリセット（エラー後の再表示時も含む）
             const submitBtns = document.querySelectorAll('input[type="submit"]');
             submitBtns.forEach(btn => {
                 btn.disabled = false;
@@ -242,6 +242,12 @@ value="${param.reservation_time}"/>" required>
                     if (submitBtn) {
                         submitBtn.disabled = true;
                         submitBtn.value = '処理中...';
+                        
+                        // 3秒後にボタンを再有効化（ネットワークエラー等の場合に備え）
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.value = '診療予約を申し込む';
+                        }, 3000);
                     }
                     
                     // エラーメッセージをクリア

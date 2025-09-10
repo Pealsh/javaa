@@ -558,18 +558,40 @@ input[type="submit"]:not(.search-button):not(.list-button):not(.table-button):ho
     background-color: var(--danger-hover);
 }
 
+.table-button-success {
+    background-color: var(--success-color);
+}
+
+.table-button-success:hover {
+    background-color: var(--success-hover);
+}
+
+.table-button-info {
+    background-color: var(--info-color);
+}
+
+.table-button-info:hover {
+    background-color: var(--info-hover);
+}
+
 /* ===== Modern Tables ===== */
+.table-container {
+    overflow-x: auto;
+    margin: var(--space-8) 0;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 table {
     width: 100%;
+    min-width: 1000px;
     border-collapse: separate;
     border-spacing: 0;
-    margin: var(--space-8) 0;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-radius: var(--radius-xl);
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid rgba(255, 255, 255, 0.2);
     position: relative;
 }
 
@@ -597,6 +619,14 @@ th {
     letter-spacing: 0.075em;
     border-bottom: 2px solid var(--gray-200);
     position: relative;
+    cursor: default;
+}
+
+th:hover {
+    background: none;
+    color: var(--gray-900);
+    transform: none;
+    box-shadow: none;
 }
 
 th:first-child {
@@ -621,10 +651,10 @@ tbody tr {
 }
 
 tbody tr:hover {
-    background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
-    transform: scale(1.01);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    background: none;
+    transform: none;
+    box-shadow: none;
+    z-index: auto;
 }
 
 tbody tr:last-child td {
@@ -642,9 +672,10 @@ tbody tr:last-child td:last-child {
 .table-actions {
     white-space: nowrap;
     display: flex;
-    gap: var(--space-2);
+    gap: var(--space-1);
     align-items: center;
     justify-content: center;
+    min-width: 160px;
 }
 
 .table-actions form {
@@ -933,6 +964,7 @@ hr {
     
     input[type="text"],
     input[type="tel"],
+    input[type="password"],
     input[type="datetime-local"],
     input[type="file"],
     select {
@@ -1098,6 +1130,7 @@ input[type="submit"]:active {
 
 /* Form focus animations */
 input[type="text"]:focus,
+input[type="password"]:focus,
 input[type="datetime-local"]:focus,
 input[type="file"]:focus,
 select:focus {
@@ -1122,22 +1155,7 @@ tbody tr {
 }
 
 tbody tr:hover {
-    animation: rowHighlight 0.2s ease;
-}
-
-@keyframes rowHighlight {
-    0% {
-        background: transparent;
-        transform: scale(1);
-    }
-    50% {
-        background: linear-gradient(135deg, rgba(79, 70, 229, 0.08) 0%, rgba(59, 130, 246, 0.08) 100%);
-        transform: scale(1.005);
-    }
-    100% {
-        background: linear-gradient(135deg, rgba(79, 70, 229, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
-        transform: scale(1.01);
-    }
+    animation: none;
 }
 
 /* Loading animation for buttons */
@@ -1367,6 +1385,7 @@ label[for]:has(~ textarea[required])::after {
 /* Medical Color Accents for Focus States */
 input[type="tel"]:focus,
 input[type="text"]:focus,
+input[type="password"]:focus,
 input[type="datetime-local"]:focus,
 select:focus {
     border-color: var(--primary-color);
@@ -1614,6 +1633,38 @@ body:has(h1:contains("予約編集")) .container form,
 
 .container .button-group .button.secondary:hover {
     background-color: var(--secondary-hover);
+}
+
+/* ===== 詳細表示ページスタイル ===== */
+.detail-item {
+    display: flex;
+    margin-bottom: var(--space-4);
+    align-items: flex-start;
+    gap: var(--space-4);
+}
+
+.detail-item label {
+    min-width: 140px;
+    font-weight: 600;
+    color: var(--gray-700);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.detail-item span,
+.detail-item .detail-text {
+    flex: 1;
+    color: var(--gray-900);
+    line-height: 1.5;
+}
+
+.detail-text {
+    background: rgba(255, 255, 255, 0.8);
+    padding: var(--space-3);
+    border-radius: var(--radius);
+    border: 1px solid var(--gray-200);
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 /* ===== カスタムダイアログスタイル ===== */

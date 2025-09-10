@@ -98,6 +98,18 @@ sortOrder);
             req.setAttribute("reservation", reservation); 
             RequestDispatcher rd = req.getRequestDispatcher("/jsp/edit.jsp"); 
             rd.forward(req, resp); 
+        } else if ("view".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
+            int id = Integer.parseInt(req.getParameter("id")); 
+            Reservation reservation = reservationDAO.getReservationById(id); 
+            req.setAttribute("reservation", reservation); 
+            RequestDispatcher rd = req.getRequestDispatcher("/jsp/view.jsp"); 
+            rd.forward(req, resp); 
         } else if ("export_csv".equals(action)) { 
             // 管理者ログインチェック
             if (!isAdminLoggedIn(req)) {
@@ -293,7 +305,8 @@ sortOrder);
                     rd.forward(req, resp); 
                     return; 
                 } 
-                resp.sendRedirect("reservation?action=list"); 
+                // 成功時はトップページにリダイレクト
+                resp.sendRedirect(req.getContextPath() + "/"); 
             } catch (DateTimeParseException e) { 
                 req.setAttribute("errorMessage", "有効な日時を入力してください。"); 
                 RequestDispatcher rd = req.getRequestDispatcher("/index.jsp"); 
