@@ -1,4 +1,5 @@
 com/example/reservation/Reservation$ReservationStatus.class
 com/example/reservation/ReservationDAO.class
+com/example/reservation/LoginServlet.class
 com/example/reservation/ReservationServlet.class
 com/example/reservation/Reservation.class

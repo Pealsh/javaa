@@ -1,0 +1,8 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "disabled",
+    "java.server.launchMode": "Standard",
+    "java.sources.organizeImports.starThreshold": 5,
+    "java.sources.organizeImports.staticStarThreshold": 5,
+    "files.encoding": "utf8"
+}

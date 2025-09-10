@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Tomcat",
+            "request": "launch",
+            "mainClass": "org.apache.catalina.startup.Bootstrap",
+            "args": ["start"],
+            "vmArgs": "-Dcatalina.home=/path/to/tomcat -Dcatalina.base=/path/to/tomcat",
+            "projectName": "jdynamic2"
+        }
+    ]
+}
