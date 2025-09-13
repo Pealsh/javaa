@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -127,7 +129,7 @@ sortOrder);
             
             int deletedCount = reservationDAO.getAllReservations().size();
             reservationDAO.cleanUpPastReservations(); 
-            resp.sendRedirect("reservation?action=list&message=" + deletedCount + "件の予約を削除しました"); 
+            resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode(deletedCount + "件の予約を削除しました", StandardCharsets.UTF_8)); 
         } else if ("confirm".equals(action)) {
             // 管理者ログインチェック
             if (!isAdminLoggedIn(req)) {
@@ -137,9 +139,9 @@ sortOrder);
             
             int id = Integer.parseInt(req.getParameter("id"));
             if (reservationDAO.updateReservationStatus(id, Reservation.ReservationStatus.CONFIRMED)) {
-                resp.sendRedirect("reservation?action=list&message=予約を確定しました");
+                resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("予約を確定しました", StandardCharsets.UTF_8));
             } else {
-                resp.sendRedirect("reservation?action=list&message=予約確定に失敗しました");
+                resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("予約確定に失敗しました", StandardCharsets.UTF_8));
             }
         } else if ("cancel".equals(action)) {
             // 管理者ログインチェック
@@ -150,9 +152,9 @@ sortOrder);
             
             int id = Integer.parseInt(req.getParameter("id"));
             if (reservationDAO.updateReservationStatus(id, Reservation.ReservationStatus.CANCELLED)) {
-                resp.sendRedirect("reservation?action=list&message=予約をキャンセルしました");
+                resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("予約をキャンセルしました", StandardCharsets.UTF_8));
             } else {
-                resp.sendRedirect("reservation?action=list&message=予約キャンセルに失敗しました");
+                resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("予約キャンセルに失敗しました", StandardCharsets.UTF_8));
             }
         } else if ("complete".equals(action)) {
             // 管理者ログインチェック
@@ -163,9 +165,9 @@ sortOrder);
             
             int id = Integer.parseInt(req.getParameter("id"));
             if (reservationDAO.updateReservationStatus(id, Reservation.ReservationStatus.COMPLETED)) {
-                resp.sendRedirect("reservation?action=list&message=診療を完了しました");
+                resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("診療を完了しました", StandardCharsets.UTF_8));
             } else {
-                resp.sendRedirect("reservation?action=list&message=診療完了の設定に失敗しました");
+                resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("診療完了の設定に失敗しました", StandardCharsets.UTF_8));
             }
         } else { 
             resp.sendRedirect("index.jsp"); 
@@ -439,7 +441,7 @@ sortOrder);
             
             int id = Integer.parseInt(req.getParameter("id")); 
             reservationDAO.deleteReservation(id); 
-            resp.sendRedirect("reservation?action=list"); 
+            resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("予約を削除しました", StandardCharsets.UTF_8)); 
         } else if ("import_csv".equals(action)) { 
             try { 
                 Part filePart = req.getPart("csvFile"); 
@@ -448,7 +450,7 @@ sortOrder);
 "UTF-8"))) { 
                         reservationDAO.importReservations(reader); 
                         // インポート完了後、予約一覧ページにリダイレクト
-                        resp.sendRedirect("reservation?action=list&message=CSV+ファイルのインポートが完了しました"); 
+                        resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode("CSVファイルのインポートが完了しました", StandardCharsets.UTF_8)); 
                         return;
                     } 
                 } 
@@ -466,6 +468,16 @@ e.getMessage());
                 rd.forward(req, resp);
                 return;
             } 
+        } else if ("clean_up".equals(action)) { 
+            // 管理者ログインチェック
+            if (!isAdminLoggedIn(req)) {
+                resp.sendRedirect(req.getContextPath() + "/login");
+                return;
+            }
+            
+            int deletedCount = reservationDAO.getAllReservations().size();
+            reservationDAO.cleanUpPastReservations(); 
+            resp.sendRedirect("reservation?action=list&message=" + URLEncoder.encode(deletedCount + "件の予約をキャンセル後削除しました", StandardCharsets.UTF_8)); 
         } else { 
             resp.sendRedirect("index.jsp"); 
         } 

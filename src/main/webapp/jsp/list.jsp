@@ -46,10 +46,13 @@
         <p class="success-message"><c:out value="${successMessage}"/></p> 
  
         <div class="list-button-group"> 
-            <a href="reservation?action=export_csv" class="list-button list-button-success no-transition" target="_blank">診療データエクスポート</a> 
-            <form action="reservation" method="get"> 
+            <form action="reservation" method="get" style="display: inline-block !important; margin: 0 !important; padding: 0 !important; vertical-align: top !important;"> 
+                <input type="hidden" name="action" value="export_csv"> 
+                <input type="submit" value="診療データエクスポート" class="list-button list-button-success" style="display: flex !important; align-items: center !important; justify-content: center !important; padding: 0.5rem 0.75rem !important; background-color: var(--success-color) !important; color: white !important; border: none !important; border-radius: 0.25rem !important; text-decoration: none !important; font-size: 14px !important; font-weight: 500 !important; cursor: pointer !important; text-align: center !important; line-height: 1.2 !important; height: 48px !important; width: 220px !important; box-sizing: border-box !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; font-family: inherit !important; transition: background-color 0.2s ease !important;" onmouseover="this.style.backgroundColor='var(--success-hover)'" onmouseout="this.style.backgroundColor='var(--success-color)'"> 
+            </form> 
+            <form action="reservation" method="post" id="cleanupForm" style="display: inline-block !important; margin: 0 !important; padding: 0 !important; vertical-align: top !important;"> 
                 <input type="hidden" name="action" value="clean_up"> 
-                <input type="submit" value="クリーンアップ" class="list-button list-button-secondary" onclick="return confirm('本当に全ての診療予約を削除しますか？')"> 
+                <input type="button" value="クリーンアップ" class="list-button list-button-success" style="display: flex !important; align-items: center !important; justify-content: center !important; padding: 0.5rem 0.75rem !important; background-color: var(--success-color) !important; color: white !important; border: none !important; border-radius: 0.25rem !important; text-decoration: none !important; font-size: 14px !important; font-weight: 500 !important; cursor: pointer !important; text-align: center !important; line-height: 1.2 !important; height: 48px !important; width: 220px !important; box-sizing: border-box !important; white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important; font-family: inherit !important; transition: background-color 0.2s ease !important;" onclick="confirmCleanup()" onmouseover="this.style.backgroundColor='var(--success-hover)'" onmouseout="this.style.backgroundColor='var(--success-color)'"> 
             </form> 
         </div> 
  
@@ -223,6 +226,14 @@ href="reservation?action=list&page=${i}&search=${searchTerm}&sortBy=${sortBy}&so
                 }, 10000); // 10秒後
             }
         });
+        
+        // クリーンアップ確認ダイアログ
+        function confirmCleanup() {
+            if (confirm('本当に全ての診療予約を削除しますか？')) {
+                document.getElementById('cleanupForm').submit();
+            }
+            // 「いいえ」が選択された場合は何もしない（画面は白くならない）
+        }
     </script>
 </body> 
 </html> 

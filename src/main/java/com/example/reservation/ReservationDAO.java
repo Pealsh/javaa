@@ -108,11 +108,16 @@ public class ReservationDAO {
     public void cleanUpPastReservations() { 
         int initialSize = reservations.size();
         
-        // 全ての予約を削除
+        // まず全ての予約をキャンセル状態にする
+        for (Reservation reservation : reservations) {
+            reservation.setStatus(Reservation.ReservationStatus.CANCELLED);
+        }
+        
+        // その後、全ての予約を削除
         reservations.clear();
         
         int deletedCount = initialSize;
-        System.out.println("クリーンアップ完了: " + deletedCount + "件の予約を削除しました");
+        System.out.println("クリーンアップ完了: " + deletedCount + "件の予約をキャンセル後削除しました");
         
         saveReservations(); 
     } 

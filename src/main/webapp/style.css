@@ -1078,16 +1078,11 @@ hr {
     }
     
     /* Stack form elements vertically on very small screens */
-    .container form[action="reservation"][method="post"],
-    .container form[enctype="multipart/form-data"] {
-        padding: var(--space-4);
-        max-width: 100%;
-    }
     
-    .container form[action="reservation"][method="post"] p input[type="text"],
-    .container form[action="reservation"][method="post"] p input[type="tel"],
-    .container form[action="reservation"][method="post"] p input[type="datetime-local"],
-    .container form[enctype="multipart/form-data"] p input[type="file"] {
+    .container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="text"],
+    .container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="tel"],
+    .container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="datetime-local"],
+    .container form[enctype="multipart/form-data"]:not(#cleanupForm) p input[type="file"] {
         max-width: 100%;
         font-size: 16px;
         min-height: 48px;
@@ -1484,7 +1479,7 @@ input[type="submit"]:hover {
 /* 特定のページのフォームのみ中央配置 */
 body:has(h1:contains("予約入力")) .container form,
 body:has(h1:contains("予約編集")) .container form,
-.container form[enctype="multipart/form-data"] {
+.container form[enctype="multipart/form-data"]:not(#cleanupForm) {
     max-width: 500px;
     margin: 0 auto;
     padding: var(--space-6);
@@ -1494,13 +1489,13 @@ body:has(h1:contains("予約編集")) .container form,
 }
 
 /* 入力・編集フォームのフィールドスタイル */
-.container form[action="reservation"][method="post"] p {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p {
     margin-bottom: var(--space-5);
     text-align: center;
 }
 
-.container form[action="reservation"][method="post"] p label,
-.container form[enctype="multipart/form-data"] p label {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p label,
+.container form[enctype="multipart/form-data"]:not(#cleanupForm) p label {
     display: block;
     margin-bottom: var(--space-3);
     font-weight: 600;
@@ -1514,9 +1509,9 @@ body:has(h1:contains("予約編集")) .container form,
     padding-left: var(--space-1);
 }
 
-.container form[action="reservation"][method="post"] p input[type="text"],
-.container form[action="reservation"][method="post"] p input[type="datetime-local"],
-.container form[enctype="multipart/form-data"] p input[type="file"] {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="text"],
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="datetime-local"],
+.container form[enctype="multipart/form-data"]:not(#cleanupForm) p input[type="file"] {
     width: 100%;
     max-width: 400px;
     padding: var(--space-3) var(--space-4);
@@ -1530,7 +1525,7 @@ body:has(h1:contains("予約編集")) .container form,
 }
 
 /* 診療科と担当医師希望のselect要素を希望診療日時と同じ大きさにする */
-.container form[action="reservation"][method="post"] p select {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p select {
     width: 100%;
     max-width: 400px;
     padding: var(--space-3) var(--space-4);
@@ -1550,7 +1545,7 @@ body:has(h1:contains("予約編集")) .container form,
 }
 
 /* 患者様情報の電話番号入力フィールドを名前フィールドと同じ大きさにする */
-.container form[action="reservation"][method="post"] p input[type="tel"]#phoneNumber {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="tel"]#phoneNumber {
     width: 100%;
     max-width: 400px;
     padding: var(--space-3) var(--space-4);
@@ -1564,7 +1559,7 @@ body:has(h1:contains("予約編集")) .container form,
 }
 
 /* 緊急連絡先の電話番号入力フィールドはtextareaと同じ幅にする */
-.container form[action="reservation"][method="post"] p input[type="tel"]:not(#phoneNumber) {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="tel"]:not(#phoneNumber) {
     width: 100%;
     padding: var(--space-4);
     border: 2px solid var(--gray-200);
@@ -1578,17 +1573,17 @@ body:has(h1:contains("予約編集")) .container form,
     display: block;
 }
 
-.container form[action="reservation"][method="post"] p input[type="text"]:focus,
-.container form[action="reservation"][method="post"] p input[type="tel"]:focus,
-.container form[action="reservation"][method="post"] p input[type="datetime-local"]:focus,
-.container form[enctype="multipart/form-data"] p input[type="file"]:focus {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="text"]:focus,
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="tel"]:focus,
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p input[type="datetime-local"]:focus,
+.container form[enctype="multipart/form-data"]:not(#cleanupForm) p input[type="file"]:focus {
     outline: none;
     border-color: var(--primary-color);
     box-shadow: 0 0 0 3px rgb(54 71 255 / 0.1);
 }
 
-.container form[action="reservation"][method="post"] p .error-message,
-.container form[enctype="multipart/form-data"] p .error-message {
+.container form[action="reservation"][method="post"]:not(#cleanupForm) p .error-message,
+.container form[enctype="multipart/form-data"]:not(#cleanupForm) p .error-message {
     display: block;
     text-align: center;
     margin-top: var(--space-2);
