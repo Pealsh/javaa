@@ -104,11 +104,15 @@ value="${reservation.reservationTime}"/>" required>
                 </p>
             </div>
             
-            <div class="button-group"> 
-                <input type="submit" value="診療予約情報を更新"> 
-                <a href="reservation?action=list" class="button secondary">予約一覧に戻る</a> 
-            </div> 
-        </form> 
-    </div> 
-</body> 
+            <div class="button-group">
+                <input type="submit" value="診療予約情報を更新">
+                <a href="reservation?action=list" class="button secondary">予約一覧に戻る</a>
+            </div>
+        </form>
+    </div>
+
+    <footer style="margin-top: 2rem; padding: 1rem 0; border-top: 1px solid #e0e0e0; text-align: center; color: #666; font-size: 0.9rem;">
+        <p>&copy; 2025 MediReserve. All rights reserved.</p>
+    </footer>
+</body>
 </html>
